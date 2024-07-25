@@ -1,0 +1,32 @@
+<div class="item result-section">
+  <div class="result-empty" [ngClass]="{'none': receivedResult && receivedResult.monthlyPayment}" >
+    <img src="./images/illustration-empty.svg" alt="icon" />
+    <h2 class="header">Results shown here</h2>
+    <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+  </div>
+
+  <div class="result-present" *ngIf="receivedResult && receivedResult.monthlyPayment">
+    <h2 class="header">Your results</h2>
+    <p>Your results are shown below based on the information you provided. To adjust the results, edit the form and
+      click "calculate repayments" again.</p>
+
+    <section class="result-area">
+      <div class="upper-part">
+        <p>Your monthly repayments</p>
+        <h1>{{receivedResult.monthlyPayment.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'GBP'})}}</h1>
+      </div>
+      <div class="line"></div>
+      <div class="lower-part">
+        <p>Total you'll repay over the term</p>
+        <h3>
+          {{
+            receivedResult.totalPayment.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'GBP'})}}
+        </h3>
+      </div>
+    </section>
+  </div>
+</div>

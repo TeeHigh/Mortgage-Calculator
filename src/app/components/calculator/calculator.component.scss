@@ -1,0 +1,10 @@
+.calculator-section{
+  flex: 1;
+  padding: 2em;
+}
+
+@media(max-width: 800px){
+  .calculator-section{
+    min-height: 50%;
+  }
+}

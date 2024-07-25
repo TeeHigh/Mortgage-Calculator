@@ -1,0 +1,229 @@
+.input-form {
+  width: 100%;
+
+  //form header
+  .calculator-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5em;
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      text-decoration: underline;
+      color: hsl(200, 26%, 54%);
+    }
+
+    button:hover{
+      color: hsl(202, 55%, 16%);
+    }
+  }
+  //end of form header
+
+  
+  //form items
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+
+    .input-area {
+      outline: 1px solid hsl(200, 26%, 54%);
+      display: flex;
+      justify-content: space-between;
+      border-radius: 5px;
+      margin-top: .5em;
+
+      .desc {
+        padding: 8px 13px;
+        background-color: hsl(202, 86%, 94%);
+        color: hsl(200, 24%, 40%);
+        font-weight: 600;
+      }
+
+      .desc-has-error{
+        background-color: hsl(4, 69%, 50%);
+        color: #fff;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 0 1em 0 .7em;
+        color: hsl(202, 55%, 16%);
+        font-weight: 600;
+        font-size: 16px;
+        width: 12px;
+      }
+    }
+    .input-area:hover {
+      outline: 1px solid hsl(202, 55%, 16%);
+    }
+    .input-area input:focus + .desc {
+      background-color: hsl(61, 70%, 52%);
+      color: hsl(202, 55%, 16%);
+    }
+
+    .input-area:has(input:focus){
+      outline: 2px solid hsl(61, 70%, 52%);
+    }
+
+    .amount-div{
+      flex-direction: row-reverse;
+    }
+
+    .has-error, .has-error:hover, .has-error:has(input:focus){
+      outline: 2px solid hsl(4, 69%, 50%);
+    }
+
+    .has-error input:focus + .desc-has-error{
+      background-color: hsl(4, 69%, 50%);
+      color: #fff;
+    }
+
+  }
+
+  .term-rate-div {
+    display: flex;
+    flex-wrap: wrap;
+
+    .tr-item {
+      flex: 1;
+    }
+  }
+
+  .mortgage-type {
+    span {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      gap: 1em;
+      border-radius: 5px;
+      outline: 1px solid hsl(200, 26%, 54%);
+      margin: 1em 0;
+      padding: 0 10px;
+
+      input,
+      label {
+        height: 100%;
+        padding: 10px 0;
+        cursor: pointer;
+      }
+
+      input[type=radio]{
+        accent-color: #d7da2f;
+      }
+
+      label {
+        flex: 1;
+        color: hsl(202, 55%, 16%);
+      }
+    }
+    
+    span:has(input[type="radio"]:checked) {
+      outline: 2px solid hsl(61, 70%, 52%);
+      // border: hsl(61, 70%, 52%);
+      background-color: rgba(215, 218, 47, .2);
+    }
+
+    span:hover{
+      outline: 1px solid hsl(61, 70%, 52%);
+    }
+  }
+
+  .submit-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: hsl(61, 70%, 52%);
+    outline: none;
+    border: none;
+    padding: .7em 1.7em;
+    border-radius: 50px;
+    max-width: 40em;
+    gap: .5em;
+    margin-top: 4em;
+    font-size: 1.1em;
+    color: hsl(202, 55%, 16%);
+  }
+
+  .submit-btn:hover{
+    filter: opacity(0.8);
+  }
+
+  .input-title{
+    color: hsl(200, 26%, 54%);
+  }
+
+  .error{
+    color: hsl(4, 69%, 50%);
+    margin-top: 7px;
+    // display: none;
+  }
+
+  // .error-show{
+  //   display: inline-block;
+  // }
+}
+
+
+//large screens
+@media (min-width: 1000px) {
+  .term-rate-div {
+    gap: 1em;
+
+    .tr-item {
+
+      input {
+        max-width: 130px;
+      }
+    }
+  }
+}
+
+//smaller screens
+@media (max-width: 300px) {
+  .submit-btn{
+    p{
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .term-rate-div{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {  
+  .submit-btn{
+    width: 100%;
+  }
+
+  .calculator-header {
+    flex-direction: column;
+
+    h3{
+      font-size: 1.4em;
+    }
+
+    button{
+      font-size: 1.1em;
+      margin-right: auto;
+      margin-top: .5em;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .term-rate-div {
+    gap: 1em;
+  }
+}

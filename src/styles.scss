@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+// ### Primary
+
+// - Lime: hsl(61, 70%, 52%)
+// - Red: hsl(4, 69%, 50%)
+
+// ### Neutral
+
+// - White: hsl(0, 0%, 100%)
+// - Slate 100: hsl(202, 86%, 94%)
+// - Slate 300: hsl(203, 41%, 72%)
+// - Slate 500: hsl(200, 26%, 54%)
+// - Slate 700: hsl(200, 24%, 40%)
+// - Slate 900: hsl(202, 55%, 16%)
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 16px;
+  background-color: hsl(202, 86%, 94%);
+  font-family: PlusJakartaSans, 'sans-serif';
+  min-height: 100vh;
+}
+
+.item{
+  height: 100%;
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .item{
+    height: fit-content;
+    min-height: 50%;
+  }
+  
+}
+
+@font-face {
+  font-family: 'PlusJakartaSans';
+  src: url('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PlusJakartaSansItalic';
+  src: url('../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

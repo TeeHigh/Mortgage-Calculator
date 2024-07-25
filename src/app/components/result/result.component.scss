@@ -1,0 +1,70 @@
+.result-section{
+  background-color: hsl(202, 55%, 16%);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 50px;
+  padding: 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+
+  .result-empty{
+    text-align: center;
+  }
+
+  .none{
+    display: none;
+  }
+
+  .header{
+    color: white;
+    margin-bottom: 1em;
+  }
+
+  p{
+    color: hsl(203, 41%, 72%);
+  }
+
+  .result-present{
+
+    .result-area{
+      margin: 2.5em 0 4.5em;
+      padding: 1.7em;
+      background-color: hsl(201, 80%, 10%);
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      border-radius: 10px;
+      border-top: 4px solid hsl(61, 70%, 52%);
+
+      .upper-part{
+        h1{
+          // letter-spacing: 1px;
+          color: hsl(61, 70%, 52%);
+          font-size: 2.9em;
+          margin-top: .2em;
+        }
+      }
+      .line{
+        border: 1px solid hsl(203, 17%, 35%);
+      }
+      .lower-part{
+        h3{
+          margin-top: .5em;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+//small screens
+@media(max-width: 800px){
+  .result-section, .calculator-section{
+    border-radius: 0;
+    // height: 50%;
+  }
+}

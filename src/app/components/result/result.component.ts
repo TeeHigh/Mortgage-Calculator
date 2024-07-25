@@ -15,21 +15,14 @@ export class ResultComponent implements OnInit {
   receivedResult: {
     monthlyPayment: number, 
     totalPayment: number,
-    isValid: boolean 
   } = {
     monthlyPayment: 0, 
     totalPayment: 0,
-    isValid: false
   };
 
   isValid: boolean = true;
 
-  setIsvalid(){
-    if (this.receivedResult == null || !this.receivedResult.isValid){
-      return true
-    }
-    else return false
-  }
+
 
   constructor(private calculatorService: CalculatorService) {}
 

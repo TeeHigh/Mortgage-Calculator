@@ -8,7 +8,7 @@
   <!-- ----Header Div---- -->
   <div class="form-item">
     <label for="amount" class="input-title">Mortgage Amount</label>
-    <div class="input-area amount-div" [ngClass]="{'has-error': amount.invalid && amount.touched}" >
+    <div class="input-area amount-div" [ngClass]="{'has-error': (amount.touched || f.submitted) && amount.invalid }" >
       <input
         type="number"
         name="amount" 
@@ -18,16 +18,16 @@
         (change)="getValue(amount)"
         required
       >
-      <span class="desc" [ngClass]="{'desc-has-error': amount.invalid && amount.touched}" >£</span>
+      <span class="desc" [ngClass]="{'desc-has-error': (amount.touched || f.submitted) && amount.invalid}">£</span>
     </div>
-    <span class="error" *ngIf="amount.invalid && amount.touched">This field is required</span>
+    <span class="error" *ngIf="(amount.touched || f.submitted) && amount.invalid">This field is required</span>
   </div>
 
   <!-- ----Term and Rate Div---- -->
   <div class="term-rate-div">
     <div class="tr-item form-item">
       <label for="term" class="input-title">Mortgage Term</label>
-      <div class="input-area" [ngClass]="{'has-error': term.invalid && term.touched}"  >
+      <div class="input-area" [ngClass]="{'has-error': (term.touched || f.submitted) && term.invalid }" >
         <input
           type="number" 
           [(ngModel)] = "term"
@@ -38,13 +38,13 @@
           (change)="getValue(term)"
           required
         >
-        <span class="desc" [ngClass]="{'desc-has-error': term.invalid && term.touched}" >years</span>
+        <span class="desc" [ngClass]="{'desc-has-error':  (term.touched || f.submitted) && term.invalid }">years</span>
       </div>
-      <span class="error" *ngIf="term.invalid && term.touched" >This field is required</span>
+      <span class="error" *ngIf=" (term.touched || f.submitted) && term.invalid" >This field is required</span>
     </div>
     <div class="tr-item form-item">
       <label for="rate" class="input-title">Interest Rate</label>
-      <div class="input-area" [ngClass]="{'has-error': rate.invalid && rate.touched}" >
+      <div class="input-area" [ngClass]="{'has-error':  (rate.touched || f.submitted) && rate.invalid}">
         <input
           type="number" 
           [(ngModel)]="rate" 
@@ -55,9 +55,9 @@
           (change)="getValue(rate)"
           required
         >
-        <span class="desc" [ngClass]="{'desc-has-error': rate.invalid && rate.touched}" >%</span>
+        <span class="desc" [ngClass]="{'desc-has-error': (rate.touched || f.submitted) && rate.invalid}">%</span>
       </div>
-      <span class="error" *ngIf="rate.invalid && rate.touched">This field is required</span>
+      <span class="error" *ngIf="(rate.touched || f.submitted) && rate.invalid">This field is required</span>
     </div>
   </div>
 
@@ -90,7 +90,7 @@
       <label for="interestOnly">Interest Only</label>
     </span>
   </div>
-  <span class="error" *ngIf="mortgageType.invalid && mortgageType.touched">This field is required</span>
+  <span class="error" *ngIf="(mortgageType.touched || f.submitted) && mortgageType.invalid">This field is required</span>
 
   <!-- ----Submit Button---- -->
   <button 

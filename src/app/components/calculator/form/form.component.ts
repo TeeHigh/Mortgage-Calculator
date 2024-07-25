@@ -21,16 +21,14 @@ export class FormComponent {
 
   isValid: boolean = false;
 
-  resultpayload: {monthlyPayment: number | null, totalPayment: number | null, isValid: boolean} = {
+  resultpayload: {monthlyPayment: number | null, totalPayment: number | null} = {
     monthlyPayment: 0,
     totalPayment: 0,
-    isValid: false
   }
 
-  reloadResultpayload: {monthlyPayment: number | null, totalPayment: number | null, isValid: boolean} = {
+  reloadResultpayload: {monthlyPayment: number, totalPayment: number} = {
     monthlyPayment: 0,
     totalPayment: 0,
-    isValid: false
   }
 
   constructor(private calculatorService: CalculatorService) {
@@ -41,14 +39,12 @@ export class FormComponent {
     console.log(f)
 
     if (this.amount != null && this.rate != null && this.term != null && this.mortgageType != "" && this.resultpayload.monthlyPayment != null) {
-      this.isValid = true
-      this.calculateRepayment(f.value.amount, f.value.rate, f.value.term, f.value.mortgageType)
+      this.calculateRepayment(this.amount, this.rate, this.term, this.mortgageType)
     }
     else {
-      this.isValid = false
+      this.calculateRepayment(0,0,0,'')
       throw new Error("Invalid input provided")
     }
-
   }
 
   // method to get the input values
@@ -97,7 +93,7 @@ export class FormComponent {
 
   //method to scroll down
   scrollToBottom(){
-    window.scrollTo({
+    this.checkValid() && window.scrollTo({
       top: 100000,
       behavior: 'smooth'
     })
@@ -111,6 +107,8 @@ export class FormComponent {
   //method to clear calculator and result
   clearCalcAndResult(){
     this.calculatorService.changeData(this.reloadResultpayload)
+    this.amount, this.rate, this.term = 0
+    this.mortgageType = ""
   }
 
   checkValid(){
@@ -121,6 +119,5 @@ export class FormComponent {
       return false;
     }
   }
-
 }
 

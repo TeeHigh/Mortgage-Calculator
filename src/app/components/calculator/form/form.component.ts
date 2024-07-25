@@ -19,8 +19,6 @@ export class FormComponent {
   rate: number | null = null;
   mortgageType: string = '';
 
-  isValid: boolean = false;
-
   resultpayload: {monthlyPayment: number | null, totalPayment: number | null} = {
     monthlyPayment: 0,
     totalPayment: 0,
@@ -36,7 +34,9 @@ export class FormComponent {
 
   // method handling form submission
   onSubmit(f: NgForm) {
-    console.log(f)
+    Object.keys(f.controls).forEach(control => {
+      f.controls[control].markAsTouched();
+    });
 
     if (this.amount != null && this.rate != null && this.term != null && this.mortgageType != "" && this.resultpayload.monthlyPayment != null) {
       this.calculateRepayment(this.amount, this.rate, this.term, this.mortgageType)
@@ -106,11 +106,13 @@ export class FormComponent {
 
   //method to clear calculator and result
   clearCalcAndResult(){
+    // console.log(this.amount, this.rate, this.term)
     this.calculatorService.changeData(this.reloadResultpayload)
     this.amount, this.rate, this.term = 0
     this.mortgageType = ""
   }
 
+  //method to check if form is valid
   checkValid(){
     if (this.amount != null && this.rate != null && this.term != null && this.mortgageType != "" && this.resultpayload.monthlyPayment != null){
       return true
@@ -119,5 +121,9 @@ export class FormComponent {
       return false;
     }
   }
+
+  // ngOnInit(){
+  //   console.log(this.amount, this.rate, this.term)
+  // }
 }
 

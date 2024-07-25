@@ -1,5 +1,5 @@
 <div class="item result-section">
-  <div class="result-empty" [ngClass]="{'none': receivedResult && receivedResult.monthlyPayment}" >
+  <div class="result-empty" [ngClass]="{'none': receivedResult && receivedResult.monthlyPayment >=0 && receivedResult.monthlyPayment}" >
     <img src="./images/illustration-empty.svg" alt="icon" />
     <h2 class="header">Results shown here</h2>
     <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>

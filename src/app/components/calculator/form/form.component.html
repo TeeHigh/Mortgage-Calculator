@@ -1,104 +1,56 @@
-<form class="input-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <!-- form header  -->
+<form [formGroup]="form" class="input-form" (ngSubmit)="onSubmit()">
+  <!-- form header -->
   <div class="calculator-header">
     <h3>Mortgage Calculator</h3>
-    <button type="reset" (click)="clearCalcAndResult()">Clear All</button>
+    <button type="button" (click)="clearCalcAndResult()">Clear All</button>
   </div>
 
-  <!-- ----Header Div---- -->
+  <!-- Amount Div -->
   <div class="form-item">
     <label for="amount" class="input-title">Mortgage Amount</label>
-    <div class="input-area amount-div" [ngClass]="{'has-error': (amount.touched || f.submitted) && amount.invalid}" >
-      <input
-        type="number"
-        name="amount" 
-        [(ngModel)]="amount" 
-        id="amount" 
-        #amount='ngModel' 
-        (change)="getValue(amount)"
-        required
-      >
-      <span class="desc" [ngClass]="{'desc-has-error': (amount.touched || f.submitted) && amount.invalid}">£</span>
+    <div class="input-area amount-div" [ngClass]="{'has-error': form.get('amount')?.touched && form.get('amount')?.invalid}">
+      <input type="number" id="amount" formControlName="amount">
+      <span class="desc" [ngClass]="{'desc-has-error': form.get('amount')?.touched && form.get('amount')?.invalid}">£</span>
     </div>
-    <span class="error" *ngIf="(amount.touched || f.submitted) && amount.invalid">This field is required</span>
+    <span class="error" *ngIf="form.get('amount')?.touched && form.get('amount')?.invalid">This field is required</span>
   </div>
 
-  <!-- ----Term and Rate Div---- -->
+  <!-- Term and Rate Div -->
   <div class="term-rate-div">
     <div class="tr-item form-item">
       <label for="term" class="input-title">Mortgage Term</label>
-      <div class="input-area" [ngClass]="{'has-error': (term.touched || f.submitted) && term.invalid }" >
-        <input
-          type="number" 
-          [(ngModel)] = "term"
-          #term="ngModel"
-          name="term" 
-          id="term"
-          min="0"
-          (change)="getValue(term)"
-          required
-        >
-        <span class="desc" [ngClass]="{'desc-has-error':  (term.touched || f.submitted) && term.invalid }">years</span>
+      <div class="input-area" [ngClass]="{'has-error': form.get('term')?.touched && form.get('term')?.invalid}">
+        <input type="number" id="term" formControlName="term" min="0">
+        <span class="desc" [ngClass]="{'desc-has-error': form.get('term')?.touched && form.get('term')?.invalid}">years</span>
       </div>
-      <span class="error" *ngIf=" (term.touched || f.submitted) && term.invalid" >This field is required</span>
+      <span class="error" *ngIf="form.get('term')?.touched && form.get('term')?.invalid">This field is required</span>
     </div>
     <div class="tr-item form-item">
       <label for="rate" class="input-title">Interest Rate</label>
-      <div class="input-area" [ngClass]="{'has-error':  (rate.touched || f.submitted) && rate.invalid}">
-        <input
-          type="number" 
-          [(ngModel)]="rate" 
-          #rate="ngModel"
-          name="rate" 
-          id="rate"
-          min="0"
-          (change)="getValue(rate)"
-          required
-        >
-        <span class="desc" [ngClass]="{'desc-has-error': (rate.touched || f.submitted) && rate.invalid}">%</span>
+      <div class="input-area" [ngClass]="{'has-error': form.get('rate')?.touched && form.get('rate')?.invalid}">
+        <input type="number" id="rate" formControlName="rate" min="0">
+        <span class="desc" [ngClass]="{'desc-has-error': form.get('rate')?.touched && form.get('rate')?.invalid}">%</span>
       </div>
-      <span class="error" *ngIf="(rate.touched || f.submitted) && rate.invalid">This field is required</span>
+      <span class="error" *ngIf="form.get('rate')?.touched && form.get('rate')?.invalid">This field is required</span>
     </div>
   </div>
 
-<!-- ----Mortgage Type Div---- -->
+  <!-- Mortgage Type Div -->
   <div class="mortgage-type">
     <p class="input-title">Mortgage Type</p>
     <span>
-      <input
-        type="radio" 
-        [(ngModel)]="mortgageType"
-        name="mortgageType" 
-        id="repayment"
-        value="repayment"
-        #mortgageType="ngModel"
-        (change)="getValue(mortgageType)"
-        required 
-      >
+      <input type="radio" id="repayment" formControlName="mortgageType" value="repayment">
       <label for="repayment">Repayment</label>
     </span>
     <span>
-      <input
-        type="radio" 
-        [(ngModel)]="mortgageType"
-        name="mortgageType" 
-        id="interestOnly"
-        value="interestOnly"
-        (change)="getValue(mortgageType)"
-        required 
-      >
+      <input type="radio" id="interestOnly" formControlName="mortgageType" value="interestOnly">
       <label for="interestOnly">Interest Only</label>
     </span>
   </div>
-  <span class="error" *ngIf="(mortgageType.touched || f.submitted) && mortgageType.invalid">This field is required</span>
+  <span class="error" *ngIf="form.get('mortgageType')?.touched && form.get('mortgageType')?.invalid">This field is required</span>
 
-  <!-- ----Submit Button---- -->
-  <button 
-    class="submit-btn" 
-    (click)="sendResultOut()"
-    (click)="scrollToBottom()" 
-    type="submit" 
-  >
+  <!-- Submit Button -->
+  <button class="submit-btn" type="submit">
     <img src="./images/icon-calculator.svg" alt="calculator icon">
     <p>Calculate Repayments</p>
   </button>
